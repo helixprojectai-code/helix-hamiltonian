@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/helix-hamiltonian.svg)](https://pypi.org/project/helix-hamiltonian/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
+![Topological Shield](assets/hammy.jpg)
 > **"What we’re really seeing isn’t matter in space… it’s geometry in time."**
 
 ## Abstract
@@ -36,8 +36,6 @@ $$H_{\text{fold}} = \hbar\Omega\sum_{i<j}(\sigma_{x}^{ij} + i\gamma\sigma_{y}^{i
 The key innovation providing structural integrity. It utilizes the **Jones Polynomial** of the configuration to enforce an energy penalty that favors topologically non-trivial knots over trivial "unknotted" states:
 
 $$H_{\text{topo}}(K) = \lambda \cdot \text{Jones}(K) \cdot \mathbf{n}\cdot\vec{\sigma}$$
-
-![Topological Shield](assets/hammy.jpg)
 
 ---
 
