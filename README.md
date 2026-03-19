@@ -30,7 +30,7 @@ $$H_{\mathrm{free}} \approx \sum_{i} \omega_{i} \sigma_{z}^{i} + \sum_{i<j} J_{i
 ### 1.2 Folding Hamiltonian ($H_{\mathrm{fold}}$) — Temporal Reconnections
 Generates off-diagonal coherence through self-intersections of the temporal manifold. This "drive" flips states and accumulates a geometric phase proportional to the knot crossing:
 
-$$H_{\mathrm{fold}} = \hbar \Omega \sum_{i<j} \left( \sigma_{x}^{ij} + i \gamma \sigma_{y}^{ij} \right)$$
+$$H_{\mathrm{fold}} = \hbar \Omega \sum_{i < j} \left( \sigma_{x}^{ij} + i \gamma \sigma_{y}^{ij} \right)$$
 
 ### 1.3 Topological Hamiltonian ($H_{\mathrm{topo}}$) — Invariant Protection (The Shield)
 The key innovation providing structural integrity. It utilizes the **Jones Polynomial** of the configuration to enforce an energy penalty that favors topologically non-trivial knots over trivial "unknotted" states:
