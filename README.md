@@ -4,6 +4,8 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Sovereign Status](https://img.shields.io/badge/Sovereignty-Hardened-orange.svg)](#sovereignty--implementation)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--7367--248X-brightgreen?logo=orcid)](https://orcid.org/0009-0000-7367-248X)
+[![Community Feedback & Responses](https://img.shields.io/badge/Community%20Feedback-🦉%20Addressed-brightgreen?style=for-the-badge)](community-feedback.md)
+[![RFC 0001](https://img.shields.io/badge/RFC%200001-Standards%20Track-blue?style=for-the-badge)](docs/rfc/0001/)
 
 > **"What we’re really seeing isn’t matter in space… it’s geometry in time."**
 
