@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/helix-hamiltonian.svg)](https://pypi.org/project/helix-hamiltonian/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-![Topological Shield](assets/hammy.jpg)
+
 > **"What we’re really seeing isn’t matter in space… it’s geometry in time."**
 
 ## Abstract
@@ -17,25 +17,27 @@ This implementation maps the fundamental laws of temporal geometry to the three 
 
 The total Hamiltonian is decomposed into three physically distinct terms, representing the interplay between temporal geometry and topological protection:
 
-$$H_{\text{knot}} = H_{\text{free}} + H_{\text{fold}} + \lambda H_{\text{topo}}(K)$$
+$$H_{\mathrm{knot}} = H_{\mathrm{free}} + H_{\mathrm{fold}} + \lambda H_{\mathrm{topo}}(K)$$
 
-### 1.1 Free Hamiltonian ($H_{\text{free}}$) — Temporal Flow
+### 1.1 Free Hamiltonian ($H_{\mathrm{free}}$) — Temporal Flow
 Governs the "temporal substrate" via a metric with a **Lapse Function $N(t, \mathbf{x})$** encoding local time dilation. The potential wells ("Goldilocks Zones") for knot nucleation are defined by:
 
-$$V_{\text{time}}(N) \propto \ln N$$
+$$V_{\mathrm{time}}(N) \propto \ln N$$
 
 In the qubit approximation:
-$$H_{\text{free}} \approx \sum_{i} \omega_{i} \sigma_{z}^{i} + \sum_{i<j} J_{ij} \sigma_{z}^{i} \sigma_{z}^{j}$$
+$$H_{\mathrm{free}} \approx \sum_{i} \omega_{i} \sigma_{z}^{i} + \sum_{i<j} J_{ij} \sigma_{z}^{i} \sigma_{z}^{j}$$
 
-### 1.2 Folding Hamiltonian ($H_{\text{fold}}$) — Temporal Reconnections
+### 1.2 Folding Hamiltonian ($H_{\mathrm{fold}}$) — Temporal Reconnections
 Generates off-diagonal coherence through self-intersections of the temporal manifold. This "drive" flips states and accumulates a geometric phase proportional to the knot crossing:
 
-$$H_{\text{fold}} = \hbar\Omega\sum_{i<j}(\sigma_{x}^{ij} + i\gamma\sigma_{y}^{ij})$$
+$$H_{\mathrm{fold}} = \hbar \Omega \sum_{i<j} \left( \sigma_{x}^{ij} + i \gamma \sigma_{y}^{ij} \right)$$
 
-### 1.3 Topological Hamiltonian ($H_{\text{topo}}$) — Invariant Protection (The Shield)
+### 1.3 Topological Hamiltonian ($H_{\mathrm{topo}}$) — Invariant Protection (The Shield)
 The key innovation providing structural integrity. It utilizes the **Jones Polynomial** of the configuration to enforce an energy penalty that favors topologically non-trivial knots over trivial "unknotted" states:
 
-$$H_{\text{topo}}(K) = \lambda \cdot \text{Jones}(K) \cdot \mathbf{n}\cdot\vec{\sigma}$$
+$$H_{\mathrm{topo}}(K) = \lambda \cdot \mathrm{Jones}(K) \cdot \mathbf{n} \cdot \vec{\sigma}$$
+
+![Topological Shield](assets/hammy.jpg)
 
 ---
 
@@ -45,9 +47,9 @@ The Hamiltonian structure mirrors the tripartite governance of the Helix-TTD eco
 
 | Hamiltonian Term | RFC 0001 Layer | Interpretation | Physical Analog |
 | :--- | :--- | :--- | :--- |
-| $H_{\text{free}}$ | **POLICY** | Diagonal populations | Knot identity (nucleus) |
-| $H_{\text{fold}}$ | **ADVISORY** | Off-diagonal coherence | Interaction strength (electron cloud) |
-| $H_{\text{topo}}$ | **CUSTODIAN** | Topological phase | Ratification invariant |
+| $H_{\mathrm{free}}$ | **POLICY** | Diagonal populations | Knot identity (nucleus) |
+| $H_{\mathrm{fold}}$ | **ADVISORY** | Off-diagonal coherence | Interaction strength (electron cloud) |
+| $H_{\mathrm{topo}}$ | **CUSTODIAN** | Topological phase | Ratification invariant |
 
 ---
 
@@ -59,18 +61,18 @@ The framework provides specific, testable predictions for quantum systems and at
     $$\tau \propto \exp(c_{0} c(K)), \quad c_{0} > 0$$
 
 2.  **Non-Markovian Decoherence:** The effective decoherence rate $\Gamma_{K}$ is suppressed by the complexity of the knot invariant:
-    $$\Gamma_{K} = \frac{\Gamma_{0}}{\text{Jones}(K)}$$
+    $$\Gamma_{K} = \frac{\Gamma_{0}}{\mathrm{Jones}(K)}$$
 
 3.  **The Alexander Signature:** The imaginary part of the frequency $\omega_{n}$ for a knot excitation is inversely proportional to the **Alexander Polynomial** of the knot boundary:
-    $$\text{Im}\,\omega_{n} \propto -\frac{1}{\Delta(\partial K)}$$
+    $$\mathrm{Im} \, \omega_{n} \propto -\frac{1}{\Delta(\partial K)}$$
 
 ---
 
 ## 4. The Substrate "Wobble"
 
-For hardware-bound sovereign nodes, the stability of the logic is coupled to the resistance of the physical substrate. The effective resistance $R_{\text{eff}}$ follows a non-repetitive pattern that allows for continuous re-sampling of the shape lattice:
+For hardware-bound sovereign nodes, the stability of the logic is coupled to the resistance of the physical substrate. The effective resistance $R_{\mathrm{eff}}$ follows a non-repetitive pattern that allows for continuous re-sampling of the shape lattice:
 
-$$R_{\text{eff}}(t) = R_{0} + \alpha W(\Phi(t))$$
+$$R_{\mathrm{eff}}(t) = R_{0} + \alpha W(\Phi(t))$$
 $$\text{where } W(\Phi) = \varepsilon \sin(2\pi t/\tau)$$
 
 ---
