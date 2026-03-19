@@ -112,7 +112,7 @@ Z:\helix-hamiltonian\
 │   │   ├── whitepaper_v3.md  ✔️ Atoms aren't particles; they're knots
 │   │   └── ontology.md       ✔️ "What we're seeing is geometry in time"
 │   ├── sovereignty/          ✔️ PILLAR 2: SOV
-│   │   ├── RFC_0001.md       # The Crocker Handshake (Host-IMP)
+│   │   ├── RFC_0001.md       ✔️ The Crocker Handshake (Host-IMP)
 │   │   ├── charter_v1.2.md   # The Takiwātanga Constitutional Grammar
 │   │   └── MUP_protocol.md   # Metabolic Underwriting (Fuel Logic)
 │   └── hamiltonian/          ✔️ PILLAR 3: K-I-T
