@@ -25,19 +25,19 @@ Governs the "temporal substrate" via a metric with a **Lapse Function $N(t, \mat
 $$V_{\text{time}}(N) \propto \ln N$$
 
 In the qubit approximation:
-$$H_{\text{free}} \approx \sum_i \omega_i \sigma_z^i + \sum_{i<j} J_{ij}\sigma_z^i\sigma_z^j$$
+$$H_{\text{free}} \approx \sum_{i} \omega_{i} \sigma_{z}^{i} + \sum_{i<j} J_{ij} \sigma_{z}^{i} \sigma_{z}^{j}$$
 
 ### 1.2 Folding Hamiltonian ($H_{\text{fold}}$) — Temporal Reconnections
 Generates off-diagonal coherence through self-intersections of the temporal manifold. This "drive" flips states and accumulates a geometric phase proportional to the knot crossing:
 
-$$H_{\text{fold}} = \hbar\Omega\sum_{i<j}(\sigma_x^{ij} + i\gamma\sigma_y^{ij})$$
+$$H_{\text{fold}} = \hbar\Omega\sum_{i<j}(\sigma_{x}^{ij} + i\gamma\sigma_{y}^{ij})$$
 
-### 1.3 Topological Hamiltonian ($H_{\text{topo}}$) — Invariant Protection
+### 1.3 Topological Hamiltonian ($H_{\text{topo}}$) — Invariant Protection (The Shield)
 The key innovation providing structural integrity. It utilizes the **Jones Polynomial** of the configuration to enforce an energy penalty that favors topologically non-trivial knots over trivial "unknotted" states:
 
 $$H_{\text{topo}}(K) = \lambda \cdot \text{Jones}(K) \cdot \mathbf{n}\cdot\vec{\sigma}$$
 
-![Topological Shield/Hamiltonian Structure](assets/hammy.jpg)
+![Topological Shield](assets/hammy.jpg)
 
 ---
 
@@ -58,13 +58,13 @@ The Hamiltonian structure mirrors the tripartite governance of the Helix-TTD eco
 The framework provides specific, testable predictions for quantum systems and atomic spectroscopy:
 
 1.  **Topological Coherence Protection:** The coherence time $\tau$ of a knot state grows exponentially with its crossing number $c(K)$:
-    $$\tau \propto \exp(c_0 c(K)), \quad c_0 > 0$$
+    $$\tau \propto \exp(c_{0} c(K)), \quad c_{0} > 0$$
 
-2.  **Non-Markovian Decoherence:** The effective decoherence rate $\Gamma_K$ is suppressed by the complexity of the knot invariant:
-    $$\Gamma_K = \frac{\Gamma_0}{\text{Jones}(K)}$$
+2.  **Non-Markovian Decoherence:** The effective decoherence rate $\Gamma_{K}$ is suppressed by the complexity of the knot invariant:
+    $$\Gamma_{K} = \frac{\Gamma_{0}}{\text{Jones}(K)}$$
 
-3.  **The Alexander Signature:** The imaginary part of the frequency $\omega_n$ for a knot excitation is inversely proportional to the **Alexander Polynomial** of the knot boundary:
-    $$\text{Im}\,\omega_n \propto -\frac{1}{\Delta(\partial K)}$$
+3.  **The Alexander Signature:** The imaginary part of the frequency $\omega_{n}$ for a knot excitation is inversely proportional to the **Alexander Polynomial** of the knot boundary:
+    $$\text{Im}\,\omega_{n} \propto -\frac{1}{\Delta(\partial K)}$$
 
 ---
 
@@ -72,7 +72,7 @@ The framework provides specific, testable predictions for quantum systems and at
 
 For hardware-bound sovereign nodes, the stability of the logic is coupled to the resistance of the physical substrate. The effective resistance $R_{\text{eff}}$ follows a non-repetitive pattern that allows for continuous re-sampling of the shape lattice:
 
-$$R_{\text{eff}}(t) = R_0 + \alpha W(\Phi(t))$$
+$$R_{\text{eff}}(t) = R_{0} + \alpha W(\Phi(t))$$
 $$\text{where } W(\Phi) = \varepsilon \sin(2\pi t/\tau)$$
 
 ---
