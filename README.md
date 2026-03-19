@@ -28,7 +28,7 @@ In the qubit approximation:
 $$H_{\text{free}} \approx \sum_i \omega_i \sigma_z^i + \sum_{i<j} J_{ij}\sigma_z^i\sigma_z^j$$
 
 ### 1.2 Folding Hamiltonian ($H_{\text{fold}}$) — Temporal Reconnections
-Generates off-diagonal coherence through self-intersections of the temporal manifold. This "drive" accumulates a geometric phase proportional to the knot crossing:
+Generates off-diagonal coherence through self-intersections of the temporal manifold. This "drive" flips states and accumulates a geometric phase proportional to the knot crossing:
 
 $$H_{\text{fold}} = \hbar\Omega\sum_{i<j}(\sigma_x^{ij} + i\gamma\sigma_y^{ij})$$
 
@@ -36,6 +36,8 @@ $$H_{\text{fold}} = \hbar\Omega\sum_{i<j}(\sigma_x^{ij} + i\gamma\sigma_y^{ij})$
 The key innovation providing structural integrity. It utilizes the **Jones Polynomial** of the configuration to enforce an energy penalty that favors topologically non-trivial knots over trivial "unknotted" states:
 
 $$H_{\text{topo}}(K) = \lambda \cdot \text{Jones}(K) \cdot \mathbf{n}\cdot\vec{\sigma}$$
+
+![Topological Shield/Hamiltonian Structure](assets/hammy.jpg)
 
 ---
 
