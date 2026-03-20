@@ -12,4 +12,14 @@
     "authority_en": "CUSTODIAN_CA_DEFENCE",
     "alert_fr": "ESCALADER. Ratification requise par le DÉPOSITAIRE (Défense nationale)."
   }
+  "alerts": {
+    "ESCALATE": {
+      "en": "ESCALATE. Ratification required by CUSTODIAN (National Defence).",
+      "fr": "ESCALADER. Ratification requise par le DÉPOSITAIRE (Défense nationale)."
+    },
+    "PAUSE": {
+      "en": "PAUSE. Additional inputs required.",
+      "fr": "PAUSE. Entrées supplémentaires requises."
+    }
+  }
 }
