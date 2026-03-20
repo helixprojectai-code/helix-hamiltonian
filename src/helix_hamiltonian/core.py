@@ -10,7 +10,17 @@ try:
     import qutip as qt
 except ImportError:
     qt = None  # Sovereign Fallback to NumPy
-
+    
+class Interaction:
+    def __init__(self, utterance, form_en, form_fr, velocity_en, velocity_fr, authority_en, context):
+        self.utterance = utterance
+        self.form_en = form_en  # Canonical enforcement
+        self.form_fr = form_fr  # Localized display
+        self.velocity_en = velocity_en
+        self.velocity_fr = velocity_fr
+        self.authority_en = authority_en
+        self.context = context
+        
 class KnotHamiltonian:
     """
     Realizes the tripartite governance of logic through temporal geometry.
