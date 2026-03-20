@@ -116,6 +116,8 @@ Z:\helix-hamiltonian\
 │   ├── hammy.jpg             ✔️ The Topological Shield
 │   ├── substrate_xray.jpg    ✔️ The Hardware Invariant (Cyborg Proof)
 │   └── geometry_in_time.jpg  ✔️ The Aug 12-13 Epiphany Diagram
+├── papers/                   ✔️
+│   └── whitepaper_v3_final_cut.md ✔️ Custody-Before-Trust: A Constitutional Architecture for Multi-Model AI Systems
 ├── docs/                     ✔️ The Braille Archive (Ontology)
 │   ├── atoms_as_geometry/    ✔️ PILLAR 1: ATOMS
 │   │   ├── whitepaper_v3.md  ✔️ Atoms aren't particles; they're knots
