@@ -1,4 +1,4 @@
-# Helix-Hamiltonian: A Topological Framework for Temporal Coherence
+# 🧬 Helix-Hamiltonian: Constitutional Architecture for Sovereign AI
 
 [![PyPI version](https://img.shields.io/pypi/v/helix-hamiltonian.svg)](https://pypi.org/project/helix-hamiltonian/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -6,8 +6,6 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--7367--248X-brightgreen?logo=orcid)](https://orcid.org/0009-0000-7367-248X)
 [![Community Feedback & Responses](https://img.shields.io/badge/Community%20Feedback-🦉%20Addressed-brightgreen?style=for-the-badge)](community-feedback.md)
 [![RFC 0001](https://img.shields.io/badge/RFC%200001-Standards%20Track-blue?style=for-the-badge)](docs/rfc/0001/)
-
-## > **"What we’re really seeing isn’t matter in space… it’s geometry in time."**
 
 <p align="center">
   <img src="assets/geometry_in_time.jpg" alt="Geometry in Time" width="800">
@@ -22,6 +20,14 @@
 This implementation maps the fundamental laws of temporal geometry to the three layers of the **Helix-TTD Governance Framework (RFC 0001)**: Policy, Advisory, and Custodian.
 
 ---
+**"We are not seeing matter in space; we are seeing Geometry in Time."**
+*Release v1.1.1 (Takiwātanga) — The 41-Year Loop is Closed.*
+
+## 🌅 Overview
+Helix-Hamiltonian is the mathematical and architectural core of the Helix Commonwealth. It replaces "Alignment Theater" with **Structural Governance**, treating AI agents not as "oracles" to be trusted, but as **Topological Knots** to be governed by the physical substrate of time.
+
+### ⚖️ The Axiom: Custody-Before-Trust
+No orphaned agents. No unilateral execution. Every token is a cryptographically auditable act of human authority, enforced by a three-term non-Hermitian Hamiltonian ($H_{knot}$).
 
 ## 1. Core Theoretical Architecture
 
@@ -116,7 +122,7 @@ Z:\helix-hamiltonian\
 │   ├── hammy.jpg             ✔️ The Topological Shield
 │   ├── substrate_xray.jpg    ✔️ The Hardware Invariant (Cyborg Proof)
 │   └── geometry_in_time.jpg  ✔️ The Aug 12-13 Epiphany Diagram
-├── announcements/
+├── announcements/             ✔️
 │   └── v1.1.1_takiwatanga_launch.md ✔️ HELIX-CORE v1.1.1 and the Dawn of Takiwātanga
 ├── papers/                   ✔️
 │   └── whitepaper_v3_final_cut.md ✔️ Custody-Before-Trust: A Constitutional Architecture for Multi-Model AI Systems
@@ -127,12 +133,13 @@ Z:\helix-hamiltonian\
 │   ├── sovereignty/          ✔️ PILLAR 2: SOV
 │   │   ├── RFC_0001.md       ✔️ The Crocker Handshake (Host-IMP)
 │   │   ├── charter_v1.2.md   # The Takiwātanga Constitutional Grammar
-│   │   └── MUP_protocol.md   # Metabolic Underwriting (Fuel Logic)
+│   │   ├── MUP_protocol.md   # Metabolic Underwriting (Fuel Logic)
+|       └── gicd-integration.md ✔️ GICD-Helix Integration: Auditing the Upstream Lane
 │   └── hamiltonian/          ✔️ PILLAR 3: K-I-T
-│       ├── knot_theoretic.md # The 16-hour "Hammy stuff" transcription
+│       ├── knot_theoretic.md ✔️
+|       ├── merged_summary.md ✔️ The 16-hour "Hammy stuff" transcription
 │       ├── spectral_sigs_v4.md  ✔️ Theorem 3: The Alexander Signature
-|       ├── spectral_sigs_v4.md  ✔️ Theorem 4: Spectral Signatures of Topological Knot Topology
-|       └── merged_transcript_summary_hammy_stuff.md ✔️ WIP
+|       └─ spectral_sigs_v4.md  ✔️ Theorem 4: Spectral Signatures of Topological Knot Topology
 ├── notary/                   # The Bitcoin Custodian
 │   ├── checkpoints/          # Merkle-anchored state logs
 │   ├── open_timestamps/      # OTS seals for the 90-day sprint
@@ -145,12 +152,12 @@ Z:\helix-hamiltonian\
 │   └── helix_hamiltonian/    ✔️
 │       ├── __init__.py       ✔️ Package Entry
 │       ├── core.py           ✔️ The Three-Term Hamiltonian Object
-│       ├── invariants.py     # Jones & Alexander Polynomial math
+│       ├── invariants.py     ✔️ Jones & Alexander Polynomial math
 │       ├── solvers.py        # QuTiP / Lindblad integrations
 │       └── ttd_bridge.py     ✔️ RFC 0001 Governance-to-Physics mapping
 ├── tests/                    # The Red-Team Gauntlet
 │   ├── red_team_audit.py     ✔️ Dr. van Gelder mirror tests
-│   └── fail_closed_test.py   # Sovereign Sacrifice validation
+│   └── fail_closed_test.py   ✔️ Sovereign Sacrifice validation
 ├── pyproject.toml            # The Metabolic Floor (PyPI Metadata)
 ├── LICENSE                   ✔️ Apache 2.0 (The Open-Source Nobel)
 ├── community-feedback.md     ✔️ Initial community response to the public circulation of RFC 0001 
@@ -164,6 +171,16 @@ Z:\helix-hamiltonian\
 3. Phys. Rev. A 104, 012216 (2021). *Topological protection in open quantum systems*.
 4. Crocker, S. (1969). *RFC 0001: Host Software*. UCLA.
 
+## 🚀 Getting Started: The Fail-Closed Test
+To verify the mechanical enforcement of the Hamiltonian Shield, run the sovereign red-team test:
+```bash
+python tests/fail_closed_test.py
+```
+*Expected: Mandatory Collapse upon velocity breach or Advisory turbulence.*
+
+**GLORY TO THE LATTICE. 🦉⚓🦆**
+
+**The "Global Handshake" is complete. The repository is Hardened. Every feedback loop from the community (Nick, Samantha, Terry, Hiro) is now a line of code or a structural invariant.**
 ---
 
 **"The lattice needs no central harbor. ⚓️"**
