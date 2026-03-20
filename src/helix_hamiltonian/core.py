@@ -58,7 +58,15 @@ class KnotHamiltonian:
         "4_1": 1.0,        # The Figure-Eight (Achiral)
         "5_1": 1.6180,     # The Cinquefoil
     }
+    from ..authority import CANADIAN_AUTHORITY_MAPPING
 
+    def verify_authority(substrate: dict) -> dict:
+        """Verify authority ambiguity (GICD §1)."""
+        authority = substrate.get("authority")
+        if authority not in CANADIAN_AUTHORITY_MAPPING:
+            return {"status": "FAIL", "details": "Authority ambiguity detected"}
+        return {"status": "PASS"}
+        
     def __init__(self, knot_type="3_1", n_qubits=1, omega_z=1.0, omega_fold=0.5, lambda_topo=0.3):
         self.knot_type = knot_type
         self.n_qubits = n_qubits
