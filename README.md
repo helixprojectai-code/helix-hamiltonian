@@ -13,7 +13,7 @@
 <p align="center">
   <img src="assets/HELIX-HAMITONIAN.jpg" alt="assets/HELIX-HAMITONIAN.jpg" width="800">
   <br>
-  <b>Regime Transition: From Laminar Flow to Topological Lock-In (The Aug 12-13 Epiphany)</b>
+  <b>GPG-SEALED INFOGRAPHIC: [REF: MARCH-2026-ST-V1.0.0b1]</b>
 </p>
 
 
