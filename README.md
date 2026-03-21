@@ -1,15 +1,14 @@
 # 🧬 Helix-Hamiltonian: Constitutional Architecture for Sovereign AI
 
-[![PyPI version](https://img.shields.io)](https://pypi.org)
-[![License: Apache 2.0](https://img.shields.io)](https://opensource.org)
-[![Lattice Status](https://img.shields.io)](docs/sovereignty/ARTICLE_5.md)
-[![Substrate Void](https://img.shields.io)](#the-substrate-wobble)
-[![Latency Horizon](https://img.shields.io)](#empirical-predictions--spectral-signatures)
-[![ORCID](https://img.shields.io)](https://orcid.org)
-[![Community Feedback](https://img.shields.io🦉-brightgreen?style=flat-square)](community-feedback.md)
-[![RFC 0001](https://img.shields.io)](docs/sovereignty/RFC_0001.md)
-
-
+[![PyPI version](https://img.shields.io/pypi/v/helix-hamiltonian.svg)](https://pypi.org/project/helix-hamiltonian/)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Sovereign Status](https://img.shields.io/badge/Sovereignty-Hardened-orange.svg)](#sovereignty--implementation)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--7367--248X-brightgreen?logo=orcid)](https://orcid.org/0009-0000-7367-248X)
+[![Community Feedback & Responses](https://img.shields.io/badge/Community%20Feedback-🦉%20Addressed-brightgreen?style=for-the-badge)](community-feedback.md)
+[![RFC 0001](https://img.shields.io/badge/RFC%200001-Standards%20Track-blue?style=for-the-badge)](docs/rfc/0001/)
+[![CI](https://img.shields.io/github/actions/workflow/status/helixprojectai-code/helix-hamiltonian/hamiltonian-ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/helixprojectai-code/helix-hamiltonian/actions/workflows/hamiltonian-ci.yml)
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
+[![Ruff](https://img.shields.io/badge/lint-ruff-D7FF64.svg?style=flat-square)](https://github.com/astral-sh/ruff)
 
 <p align="center">
   <img src="assets/geometry_in_time.jpg" alt="Geometry in Time" width="800">
@@ -171,7 +170,7 @@ Z:\helix-hamiltonian\
 ├── tests/                    # The Red-Team Gauntlet
 │   ├── red_team_audit.py     ✔️ Dr. van Gelder mirror tests
 │   └── fail_closed_test.py   ✔️ Sovereign Sacrifice validation
-├── pyproject.toml            # The Metabolic Floor (PyPI Metadata)
+|── pyproject.toml            # The Metabolic Floor (PyPI Metadata)
 ├── LICENSE                   ✔️ Apache 2.0 (The Open-Source Nobel)
 ├── community-feedback.md     ✔️ Initial community response to the public circulation of RFC 0001 
 └── README.md                 ✔️ The Global Handshake (Markdown/LaTeX)
@@ -180,7 +179,7 @@ Z:\helix-hamiltonian\
 
 ## 6. References
 1. Witten, E. (2011). *Knots and Quantum Theory*. Institute for Advanced Study.
-2. Hope, S. (2026). *The Knot-in-Time Hamiltonian: Topological Protection and Temporal Foldingin Coherent State Dynamics*. Helix AI Innovations. https://orcid.org/0009-0000-7367-248X
+2. Hope, S. (2026). *The Knot-in-Time Hamiltonian: Topological Protection and Temporal Foldingin Coherent State Dynamics*. HElix AI Innovations. https://orcid.org/0009-0000-7367-248X
 3. Phys. Rev. A 104, 012216 (2021). *Topological protection in open quantum systems*.
 4. Crocker, S. (1969). *RFC 0001: Host Software*. UCLA.
 
@@ -197,6 +196,5 @@ python tests/fail_closed_test.py
 ---
 
 **"The lattice needs no central harbor. ⚓️"**
-
----
-© 2026 Stephen Hope / Helix AI Innovations Inc.
+197:---
+198:© 2026 Stephen Hope / Helix AI Innovations Inc.
