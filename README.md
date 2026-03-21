@@ -15,16 +15,7 @@
 [![Community Feedback & Responses](https://img.shields.io/badge/Community%20Feedback-🦉%20Addressed-brightgreen?style=for-the-badge)](community-feedback.md)
 [![RFC 0001](https://img.shields.io/badge/RFC%200001-Standards%20Track-blue?style=for-the-badge)](docs/sovereignty/RFC_0001.md)
 
-# ⚓ Sovereignty Status
-![Sovereignty](https://img.shields.io)
-![Lattice](https://img.shields.io)
-![LivingAI](https://img.shields.io)
 
-# 🔬 Substrate Integrity
-![Integrity Pulse](https://img.shields.io)
-![Red Team Audit](https://img.shields.io)
-![Substrate Void](https://img.shields.io)
-![Latency Horizon](https://img.shields.io)
 
 
 
