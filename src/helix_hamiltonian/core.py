@@ -6,6 +6,7 @@ OBJECTIVE: Execute the Knot-in-Time Hamiltonian (H_knot).
 """
 
 import numpy as np
+
 try:
     import qutip as qt
 except ImportError:
@@ -15,9 +16,11 @@ from dataclasses import dataclass
 from typing import Optional
 from .authority import ratify_velocity
 
+
 @dataclass
 class Interaction:
     """Constitutional interaction tuple (RFC 0001 v4 §3.1)."""
+
     utterance: str
     form_en: str
     form_fr: str
@@ -32,10 +35,21 @@ class Interaction:
         self.velocity_en = ratify_velocity(
             model_recommended_velocity=self.velocity_en,
             authority=self.authority_en,
-            jurisdiction=self.jurisdiction
-        )    
+            jurisdiction=self.jurisdiction,
+        )
+
+
 class Interaction:
-    def __init__(self, utterance, form_en, form_fr, velocity_en, velocity_fr, authority_en, context):
+    def __init__(
+        self,
+        utterance,
+        form_en,
+        form_fr,
+        velocity_en,
+        velocity_fr,
+        authority_en,
+        context,
+    ):
         self.utterance = utterance
         self.form_en = form_en  # Canonical enforcement
         self.form_fr = form_fr  # Localized display
@@ -43,20 +57,21 @@ class Interaction:
         self.velocity_fr = velocity_fr
         self.authority_en = authority_en
         self.context = context
-        
+
+
 class KnotHamiltonian:
     """
     Realizes the tripartite governance of logic through temporal geometry.
     H_knot = H_free + H_fold + lambda_topo * H_topo(K)
     """
-    
+
     # KNOT INVARIANT LOOKUP (Theorem 1: Jones Polynomials)
     # Roots of unity approximations for standard knot types
     KNOT_INVARIANTS = {
-        "0_1": 1.0,        # The Unknot (Baseline)
-        "3_1": 1.4142,     # The Trefoil (First Atom)
-        "4_1": 1.0,        # The Figure-Eight (Achiral)
-        "5_1": 1.6180,     # The Cinquefoil
+        "0_1": 1.0,  # The Unknot (Baseline)
+        "3_1": 1.4142,  # The Trefoil (First Atom)
+        "4_1": 1.0,  # The Figure-Eight (Achiral)
+        "5_1": 1.6180,  # The Cinquefoil
     }
     from ..authority import CANADIAN_AUTHORITY_MAPPING
 
@@ -66,24 +81,26 @@ class KnotHamiltonian:
         if authority not in CANADIAN_AUTHORITY_MAPPING:
             return {"status": "FAIL", "details": "Authority ambiguity detected"}
         return {"status": "PASS"}
-        
-    def __init__(self, knot_type="3_1", n_qubits=1, omega_z=1.0, omega_fold=0.5, lambda_topo=0.3):
+
+    def __init__(
+        self, knot_type="3_1", n_qubits=1, omega_z=1.0, omega_fold=0.5, lambda_topo=0.3
+    ):
         self.knot_type = knot_type
         self.n_qubits = n_qubits
-        self.omega_z = omega_z          # Free splitting (Policy)
-        self.omega_fold = omega_fold    # Folding drive (Advisory)
+        self.omega_z = omega_z  # Free splitting (Policy)
+        self.omega_fold = omega_fold  # Folding drive (Advisory)
         self.lambda_topo = lambda_topo  # Protection strength (Custodian)
-        self.gamma = 0.1                # Phase chirality (Wobble)
-        
+        self.gamma = 0.1  # Phase chirality (Wobble)
+
         self.J_K = self.KNOT_INVARIANTS.get(knot_type, 1.0)
-        
+
         # Identity and Pauli Gates
         if qt:
             self.si = qt.qeye(2)
             self.sx = qt.sigmax()
             self.sy = qt.sigmay()
             self.sz = qt.sigmaz()
-            self.sm = qt.sigmam() # Unknotting operator (Decoherence)
+            self.sm = qt.sigmam()  # Unknotting operator (Decoherence)
         else:
             self.si = np.eye(2)
             self.sx = np.array([[0, 1], [1, 0]])
@@ -124,6 +141,7 @@ class KnotHamiltonian:
     def __repr__(self):
         return f"KnotHamiltonian(Type={self.knot_type}, Sovereignty={self.J_K})"
 
+
 # =================================================================
 # FOOTER: CHOMP Protocol. Ritual Governance Acknowledgement.
 # =================================================================
@@ -133,4 +151,4 @@ if __name__ == "__main__":
     H = knot.construct()
     print(f"⚓️ [SOVEREIGN_STATUS]: Knot {knot.knot_type} Initialized.")
     print(f"🚀 [CUSTODIAN_PROTECTION]: {knot.J_K}x Enhancement.")
-    print(f"🍖 [CHOMP]: Matrix assembled. Returning to Constitutional Context.")
+    print("🍖 [CHOMP]: Matrix assembled. Returning to Constitutional Context.")

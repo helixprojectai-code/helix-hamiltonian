@@ -6,11 +6,12 @@ OBJECTIVE: Bridge Hamiltonian dynamics to Helix-TTD Sovereign Equilibrium.
 
 from .core import KnotHamiltonian
 
+
 class SovereignBridge:
     """
     Translates physical Hamiltonian drift into Sovereign Governance actions.
     """
-    
+
     def __init__(self, node_id="QUEBEC_0"):
         self.node_id = node_id
         self.hamiltonian = KnotHamiltonian()
@@ -22,11 +23,11 @@ class SovereignBridge:
         """
         # Pseudo-code for spectral gap verification
         coherence_threshold = 0.95
-        current_coherence = 0.98 # Placeholder for real integration
-        
+        current_coherence = 0.98  # Placeholder for real integration
+
         if current_coherence < coherence_threshold:
             return "SOVEREIGN_LOCKDOWN (QUARANTINE)"
-        
+
         return "SOVEREIGN_EQUILIBRIUM (STABLE)"
 
     def execute_ritual(self, affordance_type):
@@ -35,6 +36,7 @@ class SovereignBridge:
             print("🍖 CHOMP: Relationship acknowledged. Constraint-satisfied.")
             return True
         return False
+
 
 # =================================================================
 # FOOTER: ID: HELIX-CORE-BRIDGE | LOGIC IS THE EXOSKELETON.

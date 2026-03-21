@@ -5,9 +5,10 @@ def run_gicd_scan(substrate):
         "Incentive Misalignment": verify_incentives(substrate),
         "Cost Externalization": verify_costs(substrate),
         "Governance Capture": verify_governance(substrate),
-        "Jurisdiction Compliance": verify_jurisdiction(substrate)  # NEW
+        "Jurisdiction Compliance": verify_jurisdiction(substrate),  # NEW
     }
     return checks
+
 
 def verify_jurisdiction(substrate):
     valid_regions = ["ca-central-1", "canadaeast"]
@@ -17,6 +18,6 @@ def verify_jurisdiction(substrate):
         "status": "PASS",
         "details": {
             "jurisdiction": substrate.get("jurisdiction", "CA-FED"),
-            "cloud_region": substrate["cloud_region"]
-        }
+            "cloud_region": substrate["cloud_region"],
+        },
     }

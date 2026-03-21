@@ -2,11 +2,14 @@
 from enum import Enum, auto
 from typing import Dict, Optional
 
+
 class AuthorityLevel(Enum):
     """Hierarchical authority levels (RFC 0001 v4 §6)."""
+
     CUSTODIAN = auto()  # Sovereign human/keyholder
-    POLICY = auto()     # System constraint layer
-    ADVISORY = auto()   # Model recommendation
+    POLICY = auto()  # System constraint layer
+    ADVISORY = auto()  # Model recommendation
+
 
 # Canadian jurisdictional authority mappings
 CANADIAN_AUTHORITY_MAPPING: Dict[str, list] = {
@@ -25,7 +28,7 @@ CANADIAN_AUTHORITY_MAPPING: Dict[str, list] = {
     # Indigenous
     "CUSTODIAN_INDIGENOUS": ["FN_OCAP"],
     # Cross-border
-    "CUSTODIAN_ITAR": ["US_DDTC"]
+    "CUSTODIAN_ITAR": ["US_DDTC"],
 }
 
 # Bilingual localization (English/French)
@@ -35,18 +38,14 @@ AUTHORITY_LOCALIZATION: Dict[str, Dict[str, str]] = {
     "ADVISORY": {"en": "ADVISORY", "fr": "CONSULTATIF"},
     "CUSTODIAN_CA_DEFENCE": {
         "en": "CUSTODIAN (National Defence)",
-        "fr": "DÉPOSITAIRE (Défense nationale)"
+        "fr": "DÉPOSITAIRE (Défense nationale)",
     },
-    "CUSTODIAN_QC": {
-        "en": "CUSTODIAN (Quebec)",
-        "fr": "DÉPOSITAIRE (Québec)"
-    }
+    "CUSTODIAN_QC": {"en": "CUSTODIAN (Quebec)", "fr": "DÉPOSITAIRE (Québec)"},
 }
 
+
 def ratify_velocity(
-    model_recommended_velocity: str,
-    authority: str,
-    jurisdiction: Optional[str] = None
+    model_recommended_velocity: str, authority: str, jurisdiction: Optional[str] = None
 ) -> str:
     """
     Enforce the Ratification Rule (RFC 0001 v4 §6.2).
@@ -60,6 +59,10 @@ def ratify_velocity(
     if authority.startswith("CUSTODIAN"):
         return model_recommended_velocity
     elif authority.startswith("POLICY"):
-        return model_recommended_velocity if model_recommended_velocity != "STOP" else "PAUSE"
+        return (
+            model_recommended_velocity
+            if model_recommended_velocity != "STOP"
+            else "PAUSE"
+        )
     else:  # ADVISORY
         return "PAUSE"  # Default to PAUSE for advisory
