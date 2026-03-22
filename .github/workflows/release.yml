@@ -9,6 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # 🧪 SUBSTRATE SANITIZATION
+      # Force-purges UTF-8 BOM and Windows CRLF to prevent Parser Fracture
+      - name: Sanitizing Substrate
+        run: |
+          sed -i '1s/^\xEF\xBB\xBF//' pyproject.toml
+          sed -i 's/\r$//' pyproject.toml
+          echo "✅ Substrate sanitized: BOM and CRLF removed from pyproject.toml"
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -37,7 +46,7 @@ jobs:
   publish-pypi:
     needs: audit-and-build
     runs-on: ubuntu-latest
-    environment: pypi # Matches your helix-ttd-gemini environment
+    environment: pypi
     permissions:
       id-token: write # Required for Trusted Publishing
     steps:
