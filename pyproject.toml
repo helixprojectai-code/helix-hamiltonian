@@ -1,0 +1,30 @@
+# Create the missing pyproject.toml file
+$config = @'
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "helix-hamiltonian"
+version = "1.0.0b2"
+authors = [
+  { name="Stephen Hope", email="stephen@helixprojectai.com" },
+]
+description = "Constitutional Architecture for Sovereign AI"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com"
+"Bug Tracker" = "https://github.com/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+'@
+
+$config | Out-File -FilePath "pyproject.toml" -Encoding utf8
