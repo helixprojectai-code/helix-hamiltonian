@@ -1,7 +1,7 @@
 """
-Helix Hamiltonian - TTD Bridge (v0.2 Kernel)
+Helix Hamiltonian - TTD Bridge (v0.3 Hardened)
 The 3.33ms Heartbeat & Fail-Closed Execution Loop.
-Connects Jurisdictional Authority to Invariant Enforcement.
+Connects v0.3 Compiled Policy to v0.2 Jurisdictional Authority.
 """
 
 import time
@@ -14,20 +14,28 @@ from .invariants import InvariantRegistry, is_topological_knot_holding
 class TTDBridge:
     """
     The 'Heartbeat' of the Sovereign Node.
-    Synchronizes high-velocity execution with constitutional constraints.
+    Synchronizes high-velocity execution with compiled constitutional constraints.
     """
 
     HEARTBEAT_INTERVAL: float = 0.00333  # 3.33ms (Resonant Frequency)
 
-    def __init__(self, node_state: Dict[str, Any]):
+    def __init__(self, node_state: Dict[str, Any], policy_compiler: Optional[Any] = None):
         self.node_state = node_state
+        self.policy_compiler = policy_compiler
         self.is_active = True
 
     def execute_turn(self, interaction: Interaction) -> Dict[str, Any]:
         """
-        The Canonical Execution Turn (RFC 0001 v4 §3.2).
-        Flow: GICD Scan -> Ratification -> Invariant Audit -> Execution.
+        The v0.3 Canonical Execution Turn (RFC 0001 v4 §3.2).
+        Flow: v0.3 Policy Audit -> GICD Scan -> Ratification -> Invariants -> Execution.
         """
+        
+        # 0. v0.3 COMPILED POLICY AUDIT (Pre-Execution Filter)
+        # Verifies the 'Chess Pieces' are glued to the board before processing.
+        if self.policy_compiler:
+            if not self.policy_compiler.validate_interaction(interaction):
+                return self._collapse("V0.3_COMPILED_POLICY_VIOLATION")
+
         # 1. GICD §1: Authority Ambiguity Check
         authority_check = verify_authority_ambiguity({"authority": interaction.authority})
         if authority_check["status"] == "FAIL":
