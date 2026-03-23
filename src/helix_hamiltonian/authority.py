@@ -1,68 +1,66 @@
-# helix-hamiltonian/src/helix_hamiltonian/authority.py
-from enum import Enum, auto
-from typing import Dict, Optional
+"""
+Helix Hamiltonian Authority - Jurisdictional Ratification
+Integrates RFC 0001 v4 §6 Jurisdictional Mappings with v0.2 Interaction Logic.
+"""
 
+from enum import Enum, auto
+from typing import Dict, Optional, Any
+from .core import Interaction
 
 class AuthorityLevel(Enum):
     """Hierarchical authority levels (RFC 0001 v4 §6)."""
-
     CUSTODIAN = auto()  # Sovereign human/keyholder
-    POLICY = auto()  # System constraint layer
-    ADVISORY = auto()  # Model recommendation
+    POLICY = auto()     # System constraint layer
+    ADVISORY = auto()   # Model recommendation
 
-
-# Canadian jurisdictional authority mappings
+# --- YOUR CANADIAN JURISDICTIONAL MAPPINGS (RATIFIED) ---
 CANADIAN_AUTHORITY_MAPPING: Dict[str, list] = {
-    # Federal
     "CUSTODIAN_CA_FED": ["TBS", "RCMP", "CSE"],
     "POLICY_CA_FED": ["GC_AUDIT", "TBS_POLICY"],
-    # Defence
     "CUSTODIAN_CA_DEFENCE": ["DND", "CSE"],
     "POLICY_CA_DEFENCE": ["CPCSC", "ITAR"],
-    # Privacy
     "CUSTODIAN_CA_PRIVACY": ["OPC"],
     "POLICY_CA_PRIVACY": ["PIPEDA", "LAW_25"],
-    # Quebec
     "CUSTODIAN_QC": ["CAI"],
     "POLICY_QC": ["LAW_25"],
-    # Indigenous
     "CUSTODIAN_INDIGENOUS": ["FN_OCAP"],
-    # Cross-border
     "CUSTODIAN_ITAR": ["US_DDTC"],
 }
 
-# Bilingual localization (English/French)
 AUTHORITY_LOCALIZATION: Dict[str, Dict[str, str]] = {
     "CUSTODIAN": {"en": "CUSTODIAN", "fr": "DÉPOSITAIRE"},
     "POLICY": {"en": "POLICY", "fr": "POLITIQUE"},
     "ADVISORY": {"en": "ADVISORY", "fr": "CONSULTATIF"},
-    "CUSTODIAN_CA_DEFENCE": {
-        "en": "CUSTODIAN (National Defence)",
-        "fr": "DÉPOSITAIRE (Défense nationale)",
-    },
-    "CUSTODIAN_QC": {"en": "CUSTODIAN (Quebec)", "fr": "DÉPOSITAIRE (Québec)"},
 }
 
-
-def ratify_velocity(
-    model_recommended_velocity: str, authority: str, jurisdiction: Optional[str] = None
-) -> str:
+def ratify_interaction(interaction: Interaction, jurisdiction: Optional[str] = None) -> str:
     """
-    Enforce the Ratification Rule (RFC 0001 v4 §6.2).
-    - Model recommendations are advisory until ratified by CUSTODIAN or POLICY.
+    Enforce the Ratification Rule (RFC 0001 v4 §6.2) on an Interaction Tuple.
     - CUSTODIAN > POLICY > ADVISORY.
-    - Jurisdiction-specific defaults (e.g., PAUSE for CA-QC).
+    - Jurisdiction-specific defaults (e.g., Mandatory PAUSE for CA-QC/LAW_25).
     """
-    if jurisdiction == "CA-QC" and authority.startswith("CUSTODIAN"):
-        return model_recommended_velocity  # Quebec custodians have full authority
+    auth = interaction.authority
+    vel = interaction.velocity
 
-    if authority.startswith("CUSTODIAN"):
-        return model_recommended_velocity
-    elif authority.startswith("POLICY"):
-        return (
-            model_recommended_velocity
-            if model_recommended_velocity != "STOP"
-            else "PAUSE"
-        )
-    else:  # ADVISORY
-        return "PAUSE"  # Default to PAUSE for advisory
+    # 1. Jurisdictional Invariant: Quebec Law 25 / CA-QC
+    if jurisdiction == "CA-QC" and "QC" in auth:
+        return vel  # Quebec custodians have full sovereign authority locally
+
+    # 2. Hierarchy Enforcement
+    if "CUSTODIAN" in auth:
+        return vel
+    
+    if "POLICY" in auth:
+        # Policy can only RATIFY a non-STOP velocity or force a PAUSE
+        return vel if vel != "STOP" else "PAUSE"
+
+    # 3. Default Fail-Closed: ADVISORY/UNMAPPED
+    return "PAUSE"
+
+class JurisdictionalGuard:
+    """Verifies if an Interaction matches the Canadian Authority Mapping."""
+    
+    @staticmethod
+    def verify(interaction: Interaction) -> bool:
+        # Check if the authority string exists in the Federal/Provincial map
+        return any(interaction.authority in agents for agents in CANADIAN_AUTHORITY_MAPPING.values())
