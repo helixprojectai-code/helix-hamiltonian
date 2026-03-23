@@ -31,7 +31,26 @@ At this stage, the goal is not breadth. It is to make the current shape internal
 4. Schema validation on load
 5. Clean packaging with no duplicate module ambiguity
 
-**Current repo status:** `src/helix_hamiltonian/` exists. `ttd_bridge.py` and `fail_closed_test.py` are present. `schemas/` and `rules/` directories are in place. The kernel is scaffolded.
+**Current repo status:** 
+
+`src/helix_hamiltonian/` exists. `ttd_bridge.py` and `fail_closed_test.py` are present. `schemas/` and `rules/` directories are in place. The kernel is scaffolded.
+
+# 🧬 Helix-Hamiltonian: Roadmap to Constitutional Runtime
+Version: March 2026 – Standards Track (v0.2 → v1.0)
+
+✅ v0.2 — Kernel: [COMPLETE]
+- canonical state: instantiated in core.py (NodeState/Interaction)
+- canonical authority path: ratified in authority.py (Canadian Jurisdictional Map)
+- canonical fail-closed path: executed in ttd_bridge.py (3.33ms Heartbeat)
+
+🔍 INVESTIGATE — v0.3: Executable Constitution [ACTIVE]
+This is where the repo stops being mostly constitutional prose and becomes a usable substrate.
+
+Module set:
+- policy_compiler.py — compile RFC/schema/rules into executable checks
+- receipt.py — produce deterministic audit artifacts for every ratification/refusal
+- notary.py — anchor receipts or hashes externally or locally
+- validator.py — verify config, rule, and state integrity before runtime
 
 ---
 
