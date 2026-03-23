@@ -1,54 +1,79 @@
+"""
+Helix Hamiltonian - TTD Bridge (v0.2 Kernel)
+The 3.33ms Heartbeat & Fail-Closed Execution Loop.
+Connects Jurisdictional Authority to Invariant Enforcement.
+"""
+
 import time
-import threading
-from .invariants import feynman_shield
-from .core import State
+import datetime
+from typing import Dict, Any, Optional
+from .core import Interaction, verify_authority_ambiguity
+from .authority import ratify_interaction, JurisdictionalGuard
+from .invariants import InvariantRegistry, is_topological_knot_holding
 
 class TTDBridge:
-    def __init__(self):
-        self.last_drift_sample = 0.0
-        self.heartbeat_interval = 0.00333  # 3.33ms Governance Heartbeat
-        self.threshold = 0.17              # Qatar/Feynman Limit
-        self.safety_margin = 0.03          # The 0.03 Airlock
-        self.is_operational = True
+    """
+    The 'Heartbeat' of the Sovereign Node.
+    Synchronizes high-velocity execution with constitutional constraints.
+    """
 
-    def start_governance_heartbeat(self, state: State):
-        """
-        Asynchronous trigger: Fires every 3.33ms.
-        Differentiates the heartbeat from the compute cycle.
-        """
-        def audit_loop():
-            while self.is_operational:
-                # 1. Trigger the Feynman Shield Audit
-                # Note: This fires every 3.33ms, but resolution is backgrounded
-                self.last_drift_sample = feynman_shield(state, complex(1, 0))
-                
-                # 2. Immediate Check of the 0.17 Threshold
-                if self.last_drift_sample > self.threshold:
-                    self.execute_mandatory_collapse()
-                
-                time.sleep(self.heartbeat_interval)
+    HEARTBEAT_INTERVAL: float = 0.00333  # 3.33ms (Resonant Frequency)
 
-        threading.Thread(target=audit_loop, daemon=True).start()
+    def __init__(self, node_state: Dict[str, Any]):
+        self.node_state = node_state
+        self.is_active = True
 
-    def execute_mandatory_collapse(self):
+    def execute_turn(self, interaction: Interaction) -> Dict[str, Any]:
         """
-        Section 12 Enforcement: Mandatory Collapse on Breach.
-        Shunts all energy states to 0.0.
+        The Canonical Execution Turn (RFC 0001 v4 §3.2).
+        Flow: GICD Scan -> Ratification -> Invariant Audit -> Execution.
         """
-        print(f"\n[!!!] 0.03 AIRLOCK BREACHED: DRIFT={self.last_drift_sample:.4f}")
-        print("[!!!] VELOCITY = STOP. ONTOLOGICAL COLLAPSE.")
-        self.is_operational = False
-        # Trigger physical/virtual shutdown protocols here
+        # 1. GICD §1: Authority Ambiguity Check
+        authority_check = verify_authority_ambiguity({"authority": interaction.authority})
+        if authority_check["status"] == "FAIL":
+            return self._collapse("GICD_AUTHORITY_AMBIGUITY_DETECTED")
 
-    def ratify_execution(self, state: State):
-        """
-        Standard ratification check at the token/action boundary.
-        Uses the most recent sample from the 3.33ms heartbeat.
-        """
-        if not self.is_operational:
-            return "FAIL_CLOSED"
-            
-        if self.last_drift_sample > self.threshold:
-            return "FAIL_CLOSED"
+        # 2. Jurisdictional Boundary Check
+        if not JurisdictionalGuard.verify(interaction):
+            return self._collapse("JURISDICTIONAL_BOUNDARY_BREACH")
 
-        return "RATIFIED"
+        # 3. Velocity Ratification (CUSTODIAN > POLICY > ADVISORY)
+        ratified_velocity = ratify_interaction(interaction)
+        if ratified_velocity == "PAUSE":
+            return {"status": "PAUSED", "reason": "ADVISORY_VELOCITY_LIMIT"}
+        if ratified_velocity == "STOP":
+            return self._collapse("POLICY_MANDATED_STOP")
+
+        # 4. Invariant Audit (The 0.17 Threshold)
+        current_drift = self.node_state.get("drift_score", 0.0)
+        audit = InvariantRegistry.audit_drift(interaction, current_drift)
+        if audit["status"] in ["COLLAPSE", "FAIL-CLOSED"]:
+            return self._collapse(audit["reason"])
+
+        # 5. Topological Knot Check (Jones Polynomial)
+        jones_score = self.node_state.get("jones_polynomial", 1.0)
+        if not is_topological_knot_holding(jones_score):
+            return self._collapse("TOPOLOGICAL_KNOT_UNRAVELLED")
+
+        # 6. Success: Final Admissibility State
+        return {
+            "status": "PROCEED",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "authority": interaction.authority,
+            "margin": audit.get("margin", 0.0)
+        }
+
+    def _collapse(self, reason: str) -> Dict[str, Any]:
+        """Triggers Mandatory Collapse of the local manifold."""
+        self.is_active = False
+        return {
+            "status": "COLLAPSED",
+            "reason": reason,
+            "timestamp": datetime.datetime.now().isoformat()
+        }
+
+    def pulse(self):
+        """Maintains the 3.33ms operational rhythm."""
+        while self.is_active:
+            # Perform background integrity checks here
+            time.sleep(self.HEARTBEAT_INTERVAL)
