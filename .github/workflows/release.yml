@@ -35,7 +35,7 @@ jobs:
 
       # 🔬 THE SUBSTRATE AUDIT: Will now pass with clean metadata
       - name: Run Hknot Quantum Bounds
-        run: pytest tests/test_authority.py tests/test_policy_and_federation.py tests/red_team_audit.py tests/physics/test_h_free.py
+        run: pytest tests/test_authority.py tests/test_policy_and_federation.py tests/test_repo_manifest.py tests/red_team_audit.py tests/physics/test_h_free.py
 
       - name: Build Package
         run: python -m build
