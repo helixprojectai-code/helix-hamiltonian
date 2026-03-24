@@ -162,52 +162,33 @@ print(f"Topological Protection Factor: {enhancement}x")
 
 ```text
 Z:\helix-hamiltonian\
-├── .github/                  # Shadow Fleet Automation
-│   └── workflows/            # P0 Hotfix & Integrity Pulse (IP)
-├── assets/                   ✔️ The Substrate Artifacts
-│   ├── hammy.jpg             ✔️ The Topological Shield
-│   ├── substrate_xray.jpg    ✔️ The Hardware Invariant (Cyborg Proof)
-│   └── geometry_in_time.jpg  ✔️ The Aug 12-13 Epiphany Diagram
-├── announcements/             ✔️
-│   └── v1.1.1_takiwatanga_launch.md ✔️ HELIX-CORE v1.1.1 and the Dawn of Takiwātanga
-├── papers/                   ✔️
-│   └── whitepaper_v3_final_cut.md ✔️ Custody-Before-Trust: A Constitutional Architecture for Multi-Model AI Systems
-├── docs/                     ✔️ The Braille Archive (Ontology)
-│   ├── atoms_as_geometry/    ✔️ PILLAR 1: ATOMS
-│   │   ├── whitepaper_v3.md  ✔️ Atoms aren't particles; they're knots
-│   │   └── ontology.md       ✔️ "What we're seeing is geometry in time"
-│   ├── sovereignty/          ✔️ PILLAR 2: SOV
-│   │   ├── RFC_0001_v4.md    ✔️ The Crocker Handshake (Host-IMP)
-│   │   ├── charter_v1.2.md   # The Takiwātanga Constitutional Grammar
-│   │   ├── MUP_protocol.md   # Metabolic Underwriting (Fuel Logic)
-|       └── gicd-integration.md ✔️ GICD-Helix Integration: Auditing the Upstream Lane
-│   └── hamiltonian/          ✔️ PILLAR 3: K-I-T
-│       ├── knot_theoretic.md ✔️
-|       ├── merged_summary.md ✔️ The 16-hour "Hammy stuff" transcription
-│       ├── spectral_sigs_v4.md  ✔️ Theorem 3: The Alexander Signature
-|       └─ spectral_sigs_v4.md  ✔️ Theorem 4: Spectral Signatures of Topological Knot Topology
-├── notary/                   # The Bitcoin Custodian
-│   ├── checkpoints/          # Merkle-anchored state logs
-│   ├── open_timestamps/      # OTS seals for the 90-day sprint
-│   └── audit_log.json        # The forensic trail of the epiphany
-├── scripts/                  # The $260k Pixelation Tools
-│   ├── pixelate_alexander.py ✔️ Theorem 3 Monte Carlo Sweep
-│   ├── wobble_gated_sim.py   # R_eff(t) Wobble Dynamics
-│   └── integrity_pass.sh     # The Constitutional Heartbeat
-├── src/                      ✔️ The PyPI Implementation (helix-hamiltonian)
-│   └── helix_hamiltonian/    ✔️
-│       ├── __init__.py       ✔️ Package Entry
-│       ├── core.py           ✔️ The Three-Term Hamiltonian Object
-│       ├── invariants.py     ✔️ Jones & Alexander Polynomial math
-│       ├── solvers.py        # QuTiP / Lindblad integrations
-│       └── ttd_bridge.py     ✔️ RFC 0001 Governance-to-Physics mapping
-├── tests/                    # The Red-Team Gauntlet
-│   ├── red_team_audit.py     ✔️ Dr. van Gelder mirror tests
-│   └── fail_closed_test.py   ✔️ Sovereign Sacrifice validation
-|── pyproject.toml            # The Metabolic Floor (PyPI Metadata)
-├── LICENSE                   ✔️ Apache 2.0 (The Open-Source Nobel)
-├── community-feedback.md     ✔️ Initial community response to the public circulation of RFC 0001 
-└── README.md                 ✔️ The Global Handshake (Markdown/LaTeX)
+helix-hamiltonian/
+├── .github/
+│   └── workflows/
+│       ├── hamiltonian-ci.yml       # GICD Epistemic Scan & Linter
+│       └── release.yml              # Trusted Publishing (PyPI/Zenodo)
+├── assets/                          # The Visual Atlas (GPG-Sealed)
+├── docs/
+│   ├── canon/                       # The 41-Year Loop Archive
+│   ├── rfc/
+│   │   └── 0001/                    # Constitutional Interface Spec v0.4
+│   └── architecture/
+│       └── stateless_reality.pdf    # The De-Coupling Manual
+├── src/
+│   └── helix_hamiltonian/
+│       ├── core.py                  # Interaction Tuples & GICD §1
+│       ├── authority.py             # Canadian Jurisdictional Mapping
+│       ├── invariants.py            # 0.17 Drift & Topological Limits
+│       ├── ttd_bridge.py            # 3.33ms Heartbeat Execution Loop
+│       ├── policy_compiler.py       # v0.3 Executable Rule Compiler
+│       └── federation/              # v0.4 Multi-Node Lattice (New)
+│           ├── node_sync.py         # Constitutional Handshake
+│           ├── consensus.py         # Jones Invariant Voting
+│           └── federation.py        # Refusal Propagation Logic
+├── tests/                           # Fail-Closed & Red-Team Audits
+├── Roadmap.md                       # v0.2 -> v1.0 Execution Map
+├── PRIOR_ART.md                     # DOI 10.5281/zenodo.1798f91
+└── README.md                        # The Sovereign Manifest
 ```
 ---
 
