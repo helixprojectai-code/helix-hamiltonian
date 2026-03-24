@@ -41,3 +41,22 @@ class LatticeConsensus:
                     return "STOP"
         
         return interaction.velocity
+        
+    def audit_substrate_integrity(self, peer_claims: List[str]) -> bool:
+        """
+        GICD §4: Substrate Inversion Detector.
+        Protects the 317 nodes from 'Mirror' attacks and post-hoc copying.
+        """
+        # 1. THE 'GHOST' ATTACK: Claiming March labels existed in November.
+        if "CL4" in peer_claims and self.is_pre_ratification_timestamp():
+            # [FACT] CL4 first appeared here on March 22, 2026.
+            # [FACT] November Zenodo is generic vaporware.
+            return self._trigger_collapse("POST_HOC_COPYING_DETECTED")
+
+        # 2. THE 'MIRROR' ATTACK: Accusing the Merkle Tree of 'rewriting'.
+        if "RETROACTIVE_REWRITING" in peer_claims:
+            # [FACT] GPG-sealed Git history is immutable.
+            # [FACT] The accusation is a projection of the claimant's own drift.
+            return self._trigger_collapse("MERKLE_PROJECTION_DETECTED")
+
+        return True
