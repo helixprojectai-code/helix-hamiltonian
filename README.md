@@ -65,7 +65,7 @@ The total Hamiltonian is decomposed into three distinct terms:
 
 $$H_{\mathrm{knot}} = H_{\mathrm{free}} + H_{\mathrm{fold}} + \lambda H_{\mathrm{topo}}(K)$$
 
-### 1.1 Free Hamiltonian ($H_{\mathrm{free}}$) - Temporal Flow
+### 1.1 Free Hamiltonian (`H_free`) - Temporal Flow
 
 Governs the temporal substrate via a metric with a lapse function `N(t, x)` encoding local time dilation. The potential wells ("Goldilocks zones") for knot nucleation are defined by:
 
@@ -75,13 +75,13 @@ In the qubit approximation:
 
 $$H_{\mathrm{free}} \approx \sum_{i} \omega_{i} \sigma_{z}^{i} + \sum_{i<j} J_{ij} \sigma_{z}^{i} \sigma_{z}^{j}$$
 
-### 1.2 Folding Hamiltonian ($H_{\mathrm{fold}}$) - Temporal Reconnections
+### 1.2 Folding Hamiltonian (`H_fold`) - Temporal Reconnections
 
 Generates off-diagonal coherence through self-intersections of the temporal manifold:
 
 $$H_{\mathrm{fold}} = \hbar \Omega \sum_{i < j} \left( \sigma_{x}^{ij} + i \gamma \sigma_{y}^{ij} \right)$$
 
-### 1.3 Topological Hamiltonian ($H_{\mathrm{topo}}$) - Invariant Protection
+### 1.3 Topological Hamiltonian (`H_topo`) - Invariant Protection
 
 The protective term uses the Jones polynomial of the configuration to favor non-trivial knots over trivial states:
 
