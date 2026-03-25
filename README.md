@@ -9,7 +9,8 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/helixprojectai-code/helix-hamiltonian/hamiltonian-ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/helixprojectai-code/helix-hamiltonian/actions/workflows/hamiltonian-ci.yml)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/badge/lint-ruff-D7FF64.svg?style=flat-square)](https://github.com/astral-sh/ruff)
-[![DOI](https://zenodo.org/badge/1185975476.svg)](https://doi.org/10.5281/zenodo.19183578)
+[![Software DOI](https://img.shields.io/badge/Software%20DOI-10.5281%2Fzenodo.19190019-blue?style=flat-square)](https://doi.org/10.5281/zenodo.19190019)
+[![Preprint DOI](https://img.shields.io/badge/Preprint%20DOI-10.5281%2Fzenodo.19214147-blue?style=flat-square)](https://doi.org/10.5281/zenodo.19214147)
 
 
 Canonical RFC: [docs/sovereignty/RFC_0001-locked.md](docs/sovereignty/RFC_0001-locked.md)
