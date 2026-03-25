@@ -63,29 +63,39 @@ No orphaned agents. No unilateral execution. Every token is a cryptographically 
 
 The total Hamiltonian is decomposed into three distinct terms:
 
-$$H_{\mathrm{knot}} = H_{\mathrm{free}} + H_{\mathrm{fold}} + \lambda H_{\mathrm{topo}}(K)$$
+```math
+H_{\mathrm{knot}} = H_{\mathrm{free}} + H_{\mathrm{fold}} + \lambda H_{\mathrm{topo}}(K)
+```
 
 ### 1.1 Free Hamiltonian (`H_free`) - Temporal Flow
 
 Governs the temporal substrate via a metric with a lapse function `N(t, x)` encoding local time dilation. The potential wells ("Goldilocks zones") for knot nucleation are defined by:
 
-$$V_{\mathrm{time}}(N) \propto \ln N$$
+```math
+V_{\mathrm{time}}(N) \propto \ln N
+```
 
 In the qubit approximation:
 
-$$H_{\mathrm{free}} \approx \sum_{i} \omega_{i} \sigma_{z}^{i} + \sum_{i<j} J_{ij} \sigma_{z}^{i} \sigma_{z}^{j}$$
+```math
+H_{\mathrm{free}} \approx \sum_{i} \omega_{i} \sigma_{z}^{i} + \sum_{i < j} J_{ij} \sigma_{z}^{i} \sigma_{z}^{j}
+```
 
 ### 1.2 Folding Hamiltonian (`H_fold`) - Temporal Reconnections
 
 Generates off-diagonal coherence through self-intersections of the temporal manifold:
 
-$$H_{\mathrm{fold}} = \hbar \Omega \sum_{i < j} \left( \sigma_{x}^{ij} + i \gamma \sigma_{y}^{ij} \right)$$
+```math
+H_{\mathrm{fold}} = \hbar \Omega \sum_{i < j} \left( \sigma_{x}^{ij} + i \gamma \sigma_{y}^{ij} \right)
+```
 
 ### 1.3 Topological Hamiltonian (`H_topo`) - Invariant Protection
 
 The protective term uses the Jones polynomial of the configuration to favor non-trivial knots over trivial states:
 
-$$H_{\mathrm{topo}}(K) = \lambda \cdot \mathrm{Jones}(K) \cdot \mathbf{n} \cdot \vec{\sigma}$$
+```math
+H_{\mathrm{topo}}(K) = \lambda \cdot \mathrm{Jones}(K) \cdot \mathbf{n} \cdot \vec{\sigma}
+```
 
 ![Topological Shield](assets/hammy.jpg)
 
@@ -102,21 +112,31 @@ The Hamiltonian structure mirrors the tripartite governance of the Helix-TTD eco
 ## 3. Empirical Predictions and Spectral Signatures
 
 1. Topological coherence protection:
-   $$\tau \propto \exp(c_{0} c(K)), \quad c_{0} > 0$$
+   ```math
+   \tau \propto \exp(c_{0} c(K)), \quad c_{0} > 0
+   ```
 2. Non-Markovian decoherence:
-   $$\Gamma_{K} = \frac{\Gamma_{0}}{\mathrm{Jones}(K)}$$
+   ```math
+   \Gamma_{K} = \frac{\Gamma_{0}}{\mathrm{Jones}(K)}
+   ```
 3. Alexander signature:
-   $$\mathrm{Im} \, \omega_{n} \propto -\frac{1}{\Delta(\partial K)}$$
+   ```math
+   \mathrm{Im} \, \omega_{n} \propto -\frac{1}{\Delta(\partial K)}
+   ```
 
 ## 4. The Substrate Wobble
 
 For hardware-bound sovereign nodes, the stability of the logic is coupled to the resistance of the physical substrate:
 
-$$R_{\mathrm{eff}}(t) = R_{0} + \alpha W(\Phi(t))$$
+```math
+R_{\mathrm{eff}}(t) = R_{0} + \alpha W(\Phi(t))
+```
 
 where:
 
-$$W(\Phi) = \varepsilon \sin(2\pi t/\tau)$$
+```math
+W(\Phi) = \varepsilon \sin(2\pi t/\tau)
+```
 
 ## 5. Sovereignty and Implementation
 
