@@ -79,6 +79,11 @@ def _run_fzsmk_gate(gicd_payload: Dict[str, Any], token_ids: list) -> Optional[D
                 f"FZS-MK delta_crit breach: margin={meta.margin:.4f}, "
                 f"entropy_delta={meta.entropy_delta:.4f} (threshold={DELTA_CRIT})"
             ),
+            "delta_inf": meta.delta_inf,
+            "epsilon_star": meta.epsilon_star,
+            "gamma_est": meta.gamma_est,
+            "stability_tier": meta.stability_tier,
+            "robustness_budget": meta.robustness_budget,
         }
     return None  # Passed
 

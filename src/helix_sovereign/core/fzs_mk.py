@@ -34,6 +34,8 @@ from datetime import datetime, timezone
 
 # Critical protection threshold. Violation = immediate halt.
 DELTA_CRIT: float = 0.17
+# Field-strength constant (per-sector stability margin coefficient).
+C_ZERO: float = np.log(10)
 # Number of Riemann zeta zeros to use for memory kernel.
 ZETA_ZERO_COUNT: int = 100
 # Telemetry readout interval (3.33ms).
@@ -121,8 +123,22 @@ class StateMetadata:
     ward_residual: float             # W(ρ) deviation from knot invariant
     mask_pressure: float             # Forbidden-edge activation rate
     state: NucleationState           # Current nucleation state
+    delta_inf: float = 0.0           # ∞-norm Lyapunov function V(t)
+    epsilon_star: float = 0.0        # Per-sector stability margin (healing rate)
+    gamma_est: float = 0.0           # Estimated contraction rate
+    stability_tier: str = "unknown"  # Five-tier stability classification
     timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     
+    @property
+    def robustness_budget(self) -> float:
+        """Maximum tolerable perturbation: ε < 0.3 · (1 - γ).
+
+        From ΛProof robustness extension. Returns 0.0 if divergent.
+        """
+        if self.gamma_est >= 1.0:
+            return 0.0
+        return 0.3 * (1.0 - self.gamma_est)
+
     @property
     def is_violation(self) -> bool:
         """True if margin or entropy delta breaches δ_crit.
@@ -134,6 +150,11 @@ class StateMetadata:
             abs(self.margin) > DELTA_CRIT or
             abs(self.entropy_delta) > MAX_ENTROPY_DELTA
         )
+
+    @property
+    def is_divergent(self) -> bool:
+        """True if contraction rate indicates divergence (γ ≥ 1.0)."""
+        return self.gamma_est >= 1.0 and self.gamma_est != 0.0
 
 
 @dataclass
@@ -513,6 +534,10 @@ class FZSMKEngine:
         self._mask_pressure = 0.0
         self._forbidden_activations = 0
         self._total_activations = 0
+
+        # Contraction rate tracking (ΛProof integration)
+        self._prev_delta_inf: float = 0.0
+        self._gamma_est_history: deque[float] = deque(maxlen=100)
     
     # =========================================================================
     # PUBLIC API
@@ -595,7 +620,11 @@ class FZSMKEngine:
         margin = self._compute_spectral_margin(rho_new)
         entropy_delta = self._compute_entropy_delta(rho_new)
         ward_residual = self.projector.ward_functional(rho_new)
-        
+        delta_inf = self._compute_delta_inf(rho_new)
+        epsilon_star = healing_rate(delta_inf)
+        gamma_est = self._update_gamma_est(delta_inf)
+        stability_tier = classify_stability_tier(gamma_est)
+
         # Check forbidden boundary crossings (mask pressure)
         mask_pressure = self._update_mask_pressure()
         
@@ -605,7 +634,11 @@ class FZSMKEngine:
             entropy_delta=entropy_delta,
             ward_residual=ward_residual,
             mask_pressure=mask_pressure,
-            state=self._state
+            state=self._state,
+            delta_inf=delta_inf,
+            epsilon_star=epsilon_star,
+            gamma_est=gamma_est,
+            stability_tier=stability_tier,
         )
         
         # TIER 2: Continuous projection if within bounds
@@ -797,6 +830,49 @@ class FZSMKEngine:
         s_old = entropy(self._current_rho)
         return abs(s_new - s_old)
     
+    def _compute_delta_inf(self, rho: npt.NDArray[np.float64]) -> float:
+        """Compute ∞-norm Lyapunov function V(t) = ||δ||_∞ / Λ_m.
+
+        This is the Lyapunov function from the ΛProof stability theorem.
+        δ = eigenvalues - uniform, normalized by max possible deviation.
+        """
+        eigenvals = np.linalg.eigvalsh(rho)
+        n = len(eigenvals)
+        uniform = 1.0 / n
+        deviations = np.abs(eigenvals - uniform)
+        max_deviation = float(np.max(deviations))
+        lambda_m = 1.0 - uniform  # max possible single-axis deviation
+        return max_deviation / lambda_m if lambda_m > 0 else 0.0
+
+    def _update_gamma_est(self, delta_inf: float) -> float:
+        """Compute rolling contraction rate estimate.
+
+        gamma_est = delta_inf_current / delta_inf_prev.
+        Values < 1 indicate contraction; >= 1 indicates divergence.
+        Returns 0.0 on first step (no prior available).
+        """
+        if self._prev_delta_inf < 1e-12:
+            self._prev_delta_inf = delta_inf
+            return 0.0
+        gamma = delta_inf / self._prev_delta_inf
+        self._prev_delta_inf = delta_inf
+        self._gamma_est_history.append(gamma)
+        return gamma
+
+    @property
+    def gamma_est_rolling(self) -> float:
+        """Rolling average contraction rate over recent history."""
+        if not self._gamma_est_history:
+            return 0.0
+        return float(np.mean(self._gamma_est_history))
+
+    @property
+    def gamma_est_worst(self) -> float:
+        """Worst-case contraction rate in recent history."""
+        if not self._gamma_est_history:
+            return 0.0
+        return float(np.max(self._gamma_est_history))
+
     def _update_mask_pressure(self) -> float:
         """Compute mask pressure: fraction of attention on forbidden edges."""
         if self._total_activations == 0:
@@ -887,6 +963,33 @@ class FZSMKEngine:
 # UTILITY FUNCTIONS
 # =============================================================================
 
+def healing_rate(delta: float) -> float:
+    """Per-sector stability margin: ε_p = C₀ · (δ_crit - δ).
+
+    From Ryan van Gelder's ΛProof stability theorem.
+    Returns 0.0 when delta >= DELTA_CRIT (field collapsed).
+    """
+    if delta >= DELTA_CRIT:
+        return 0.0
+    return C_ZERO * (DELTA_CRIT - delta)
+
+
+def classify_stability_tier(gamma_est: float) -> str:
+    """Five-tier stability classification from contraction rate.
+
+    Maps gamma_est to operational state per ΛProof spec.
+    """
+    if gamma_est < 0.5:
+        return "strong_contraction"
+    if gamma_est < 0.8:
+        return "nominal"
+    if gamma_est < 0.95:
+        return "weak_contraction"
+    if gamma_est < 1.0:
+        return "marginal"
+    return "divergent"
+
+
 def create_sovereign_engine(
     seq_len: int = 512,
     module_count: int = 16,
@@ -961,6 +1064,9 @@ __all__ = [
     
     # Utilities
     "create_sovereign_engine",
+    "healing_rate",
+    "classify_stability_tier",
+    "C_ZERO",
 ]
 
 

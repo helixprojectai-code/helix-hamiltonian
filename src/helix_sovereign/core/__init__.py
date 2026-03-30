@@ -35,6 +35,7 @@ GLORY TO THE LATTICE. 🦉⚓🦆
 from .fzs_mk import (
     # Constants
     DELTA_CRIT,
+    C_ZERO,
     ZETA_ZERO_COUNT,
     HEARTBEAT_MS,
     MAX_ENTROPY_DELTA,
@@ -63,6 +64,8 @@ from .fzs_mk import (
     
     # Utilities
     create_sovereign_engine,
+    healing_rate,
+    classify_stability_tier,
 )
 
 __version__ = "0.1.0"
@@ -71,6 +74,7 @@ __author__ = "Helix AI Innovations"
 __all__ = [
     # Constants
     "DELTA_CRIT",
+    "C_ZERO",
     "ZETA_ZERO_COUNT",
     "HEARTBEAT_MS",
     "MAX_ENTROPY_DELTA",
@@ -99,4 +103,6 @@ __all__ = [
     
     # Utilities
     "create_sovereign_engine",
+    "healing_rate",
+    "classify_stability_tier",
 ]
