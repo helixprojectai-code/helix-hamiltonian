@@ -21,6 +21,66 @@ AWS_URL = os.getenv("AWS_URL", "https://erdmzd08ud.execute-api.us-east-1.amazona
 AZURE_URL = os.getenv("AZURE_URL", "")
 AZURE_KEY = os.getenv("AZURE_FUNCTION_KEY", "")
 GUARDIAN_ENABLED = os.getenv("GUARDIAN_ENABLED", "true").lower() == "true"
+FZSMK_ENABLED = os.getenv("FZSMK_ENABLED", "true").lower() == "true"
+
+
+def _run_fzsmk_gate(gicd_payload: Dict[str, Any], token_ids: list) -> Optional[Dict[str, Any]]:
+    """Local FZS-MK physics gate. Returns FAIL dict or None if passed."""
+    try:
+        import numpy as np
+        from helix_sovereign.core import (
+            create_sovereign_engine,
+            GICDBlockError,
+            DeltaCritViolation,
+            TopologicalCollapse,
+            DELTA_CRIT,
+        )
+    except ImportError:
+        return None  # helix_sovereign not available
+
+    # Map GICD boolean payload to authority/cost specs
+    markers = gicd_payload or {}
+    has_authority = not markers.get("authority_ambiguity", False)
+    has_cost = not markers.get("cost_externalization", False)
+    authority_spec = {"decision_bounds": ["constitutional"]} if has_authority else None
+    cost_allocation = (
+        {"compute": {"internalized": True, "externalized": False}}
+        if has_cost else
+        {"compute": {"internalized": False, "externalized": True}}
+    )
+
+    n = max(len(token_ids), 4)
+    try:
+        engine = create_sovereign_engine(
+            seq_len=n, module_count=n,
+            authority_spec=authority_spec,
+            cost_allocation=cost_allocation,
+        )
+    except GICDBlockError as e:
+        return {"status": "FAIL", "reason": f"FZS-MK GICD block: {e}"}
+    except TopologicalCollapse as e:
+        return {"status": "FAIL", "reason": f"FZS-MK topological collapse: {e}"}
+
+    # Build Hermitian Hamiltonian from token_ids
+    x = np.array(token_ids[:n], dtype=float)
+    x = x / (np.linalg.norm(x) + 1e-12)
+    H = np.outer(x, x)
+    H = (H + H.T) / 2.0
+
+    try:
+        _rho, meta = engine.step(H, dt=0.01)
+    except (DeltaCritViolation, TopologicalCollapse) as e:
+        return {"status": "FAIL", "reason": f"FZS-MK kill-switch: {e}"}
+
+    if meta.is_violation:
+        return {
+            "status": "FAIL",
+            "reason": (
+                f"FZS-MK delta_crit breach: margin={meta.margin:.4f}, "
+                f"entropy_delta={meta.entropy_delta:.4f} (threshold={DELTA_CRIT})"
+            ),
+        }
+    return None  # Passed
 
 
 def pre_nucleation_check(gicd_payload: Dict[str, Any], token_ids: list) -> Dict[str, Any]:
@@ -47,6 +107,13 @@ def pre_nucleation_check(gicd_payload: Dict[str, Any], token_ids: list) -> Dict[
                 }
         except ImportError:
             pass  # Guardian not available — skip check
+
+    # FZS-MK local physics gate (no network call)
+    fzsmk_result = None
+    if FZSMK_ENABLED:
+        fzsmk_result = _run_fzsmk_gate(gicd_payload, token_ids)
+        if fzsmk_result is not None:
+            return fzsmk_result
 
     # GICD scan
     gicd_resp = requests.post(GICD_URL, json=gicd_payload, timeout=10)
@@ -87,6 +154,7 @@ def pre_nucleation_check(gicd_payload: Dict[str, Any], token_ids: list) -> Dict[
         "memory_bias": az_data.get("bias"),
         "consensus_reached": az_data.get("consensus_reached"),
         "guardian_enabled": GUARDIAN_ENABLED,
+        "fzsmk_enabled": FZSMK_ENABLED,
     }
 
     # Emit auditable receipt
@@ -223,4 +291,4 @@ class SovereignBridge:
         return affordance_type == "SCOOBY_SNACK"
 
 
-__all__ = ["SovereignBridge", "TTDBridge"]
+__all__ = ["SovereignBridge", "TTDBridge", "pre_nucleation_check"]
